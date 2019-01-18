@@ -5,12 +5,14 @@ import ListItemText from "@material-ui/core/ListItem";
 import Paper from "@material-ui/core/Paper";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import DepartmentList from "./DepartmentList";
 
 export default class Instructors extends Component {
   constructor(props) {
     super(props);
     this.state = {
       instructors: [],
+      departments: [],
       teacherId: -1,
       firstName: '',
       lastName: '',
@@ -24,17 +26,19 @@ export default class Instructors extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.instructors !== this.props.instructors) {
+    if (nextProps !== this.props) {
       console.log(nextProps.instructors);
       this.setState({
-        instructors: nextProps.instructors[0] || []
+        instructors: nextProps.instructors[0] || [],
+        departments: nextProps.departments[0] || []
       });
     }
   }
 
   componentDidMount() {
     this.setState({
-      instructors: this.props.instructors[0] || []
+      instructors: this.props.instructors[0] || [],
+      departments: this.props.departments[0] || []
     });
   }
 
@@ -99,7 +103,7 @@ export default class Instructors extends Component {
     return (
       <div style={styles.tabContent} className="container">
       <div className="row">
-        <div className="col-sm-4">
+        <div className="col-sm-3">
           <Paper style={{ width: "200px" }}>
           <strong style={{marginLeft: '16%'}}>Instructors</strong>
           <List component="ol">
@@ -114,9 +118,9 @@ export default class Instructors extends Component {
         </Paper>
         </div>
         <div
-          className="col-sm-6"
+          className="col-sm-5"
         >
-          <Paper style={{width: '440px', paddingBottom: '20px'}}>
+          <Paper style={{width: '420px', paddingBottom: '20px'}}>
             <TextField
               id="first_name"
               label="First Name"
@@ -178,7 +182,7 @@ export default class Instructors extends Component {
               value={this.state.department}
               onChange={this.change}
               style={{
-                margin: '15px',
+                margin: '12px',
                 display: 'inline',
                 }}
             />
@@ -203,6 +207,9 @@ export default class Instructors extends Component {
               Delete
             </Button>
           </Paper>
+        </div>
+        <div className="col-sm-4">
+          <DepartmentList departments={this.state.departments} />
         </div>
       </div>
       </div>

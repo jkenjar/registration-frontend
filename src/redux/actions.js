@@ -6,6 +6,13 @@ const getInstructors = () => {
   };
 };
 
+const getDepartments = () =>{
+  return {
+    type: 'GET_DEPARTMENTS',
+    payload: axios.get('http://localhost:3000/departments')
+  }
+}
+
 // const saveInstructor = instructor => {
 //   return {
 //     type: "SAVE_INSTRUCTOR",
@@ -24,5 +31,6 @@ const getInstructors = () => {
 // };
 
 export const actions = {
-  getInstructors
+  getInstructors,
+  getDepartments
 };

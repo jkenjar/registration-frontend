@@ -10,13 +10,17 @@ const mapDispatchToProps = dispatch => {
   return {
     getInstructors: () => {
       dispatch(actions.getInstructors());
+    },
+    getDepartments: () => {
+      dispatch(actions.getDepartments());
     }
   };
 };
 
 const mapStateToProps = state => {
   return {
-    instructors: state.instructors
+    instructors: state.instructors,
+    departments: state.departments
   };
 };
 
@@ -30,6 +34,7 @@ class App extends Component {
 
   componentDidMount() {
     this.props.getInstructors();
+    this.props.getDepartments();
   }
 
   change = (event, value) => {
@@ -71,7 +76,7 @@ class App extends Component {
         <div>
           {
             this.state.value === 'instructors' &&
-            <Instructors instructors={this.props.instructors} />
+            <Instructors instructors={this.props.instructors} departments={this.props.departments} />
           }
           {
             this.state.value === 'students' &&

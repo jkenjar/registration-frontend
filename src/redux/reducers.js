@@ -9,6 +9,16 @@ const instructors = (state = [], action) => {
   }
 };
 
+const departments = (state = [], action) => {
+  switch(action.type) {
+    case 'GET_DEPARTMENTS':
+      return [...state, action.payload.data];
+    default:
+      return state;
+  }
+};
+
 export const reducers = combineReducers({
-  instructors
+  instructors,
+  departments
 });
