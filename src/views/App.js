@@ -13,6 +13,9 @@ const mapDispatchToProps = dispatch => {
     },
     getDepartments: () => {
       dispatch(actions.getDepartments());
+    },
+    saveInstructor: (data) => {
+      dispatch(actions.saveInstructor(data));
     }
   };
 };
@@ -76,7 +79,11 @@ class App extends Component {
         <div>
           {
             this.state.value === 'instructors' &&
-            <Instructors instructors={this.props.instructors} departments={this.props.departments} />
+            <Instructors 
+              instructors={this.props.instructors} 
+              departments={this.props.departments} 
+              saveInstructor={this.props.saveInstructor}
+            />
           }
           {
             this.state.value === 'students' &&

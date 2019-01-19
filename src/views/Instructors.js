@@ -92,6 +92,29 @@ export default class Instructors extends Component {
     });
   }
 
+  getDepartment = (e, value) => {
+    this.setState({
+      department: value.description
+    });
+  }
+
+  saveInstructor = (e) => {
+    let instructor = {
+      instructor_id: this.state.teacherId,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      dob: this.state.dob,
+      email: this.state.email,
+      phone: this.state.phone,
+      positionType: this.state.positionType,
+      dateHired: this.state.dateHired,
+      description: this.state.department
+    }
+    if(instructor !== {}) {
+      this.props.saveInstructor(instructor);
+    }
+  }
+
   render() {
     const styles = {
       tabContent: {
@@ -188,18 +211,20 @@ export default class Instructors extends Component {
             />
             <Button
               variant="contained"
+              disabled={this.state.teacherId > -1}
               style={{
                 backgroundColor: '#3498DB',
                 color: 'white',
                 margin: '10px'
               }}
+              onClick={this.saveInstructor}
             >
               Save
             </Button>
             <Button
               variant="contained"
               style={{
-                backgroundColor: 'RED',
+                backgroundColor: '#9E1030',
                 color: 'white',
                 margin: '10px'
               }}
@@ -209,7 +234,10 @@ export default class Instructors extends Component {
           </Paper>
         </div>
         <div className="col-sm-4">
-          <DepartmentList departments={this.state.departments} />
+          <DepartmentList 
+            departments={this.state.departments}
+            getDepartment={this.getDepartment}
+          />
         </div>
       </div>
       </div>

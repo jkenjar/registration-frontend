@@ -5,11 +5,6 @@ import ListItemText from "@material-ui/core/ListItem";
 import Paper from "@material-ui/core/Paper";
 
 export default class DepartmentList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        };
-    }
 
     render() {
         return (<div>
@@ -18,8 +13,8 @@ export default class DepartmentList extends Component {
                 <List component="ol">
                     {
                         this.props.departments.map((value, key) => 
-                            <ListItem key={key} button>
-                                {value.description}
+                            <ListItem key={key} button onClick={(e) => this.props.getDepartment(e, value)}>
+                                { value.description }
                             </ListItem>
                             )
                     }

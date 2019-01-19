@@ -13,24 +13,25 @@ const getDepartments = () =>{
   }
 }
 
-// const saveInstructor = instructor => {
-//   return {
-//     type: "SAVE_INSTRUCTOR",
-//     payload: axios.post("http://localhost:3000/add_instructor", {
-//       instructorId: instructor.instructorId,
-//       firstName: instructor.firstName,
-//       lastName: instructor.lastName,
-//       dob: instructor.dob,
-//       email: instructor.email,
-//       phone: instructor.phone,
-//       positionType: instructor.positionType,
-//       dateHired: instructor.dateHired,
-//       department: instructor.department
-//     })
-//   };
-// };
+const saveInstructor = (instructor) => {
+  return {
+    type: "SAVE_INSTRUCTOR",
+    payload: axios.post("http://localhost:3000/add_instructor", {
+      instructor_id: instructor.instructor_id,
+      firstName: instructor.firstName,
+      lastName: instructor.lastName,
+      dob: instructor.dob,
+      email: instructor.email,
+      phone: instructor.phone,
+      positionType: instructor.positionType,
+      dateHired: instructor.dateHired,
+      description: instructor.description
+    })
+  };
+};
 
 export const actions = {
   getInstructors,
-  getDepartments
+  getDepartments,
+  saveInstructor
 };
