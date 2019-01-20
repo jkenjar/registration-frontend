@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { actions } from "../redux/actions";
+// import { operations } from "../redux/operations";
 import { connect } from "react-redux";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -14,8 +15,8 @@ const mapDispatchToProps = dispatch => {
     getDepartments: () => {
       dispatch(actions.getDepartments());
     },
-    saveInstructor: (data) => {
-      dispatch(actions.saveInstructor(data));
+    saveInstructor: (instructor) => {
+      dispatch(actions.saveInstructor(instructor))
     }
   };
 };
@@ -88,7 +89,7 @@ class App extends Component {
           {
             this.state.value === 'students' &&
             <div style={styles.tabContent}>
-            <h1>Student page will go here...</h1>
+            <h1 style={{color: 'white'}}>Student page</h1>
             </div>
           }
         </div>

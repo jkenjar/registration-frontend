@@ -26,18 +26,21 @@ export default class Instructors extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps !== this.props) {
-      console.log(nextProps.instructors);
+    if (nextProps.instructors.length !== this.props.instructors.length) {
+      // console.log(nextProps.instructors)
       this.setState({
-        instructors: nextProps.instructors[0] || [],
-        departments: nextProps.departments[0] || []
+        instructors: nextProps.instructors
       });
     }
+
+    this.setState({
+      departments: nextProps.departments[0] || []
+    });
   }
 
   componentDidMount() {
     this.setState({
-      instructors: this.props.instructors[0] || [],
+      instructors: this.props.instructors,
       departments: this.props.departments[0] || []
     });
   }
@@ -78,17 +81,21 @@ export default class Instructors extends Component {
     }
   }
 
-  getTeacher = (e, value) => {
-    console.log(value.first_name)
+  getTeacher = (e, teach) => {
+    let dept = this.state.departments.filter(value => {
+      if(value.department_id == teach.department_id) {
+        return value;
+      }
+    })
     this.setState({
-      firstName: value.first_name,
-      lastName: value.last_name,
-      dob: value.dob,
-      email: value.email,
-      phone: value.phone,
-      positionType: value.position_type,
-      dateHired: value.date_hired,
-      department: value.department_id
+      firstName: teach.first_name,
+      lastName: teach.last_name,
+      dob: teach.dob,
+      email: teach.email,
+      phone: teach.phone,
+      positionType: teach.position_type,
+      dateHired: teach.date_hired,
+      department: (dept !== undefined && dept.length > 0) ? dept[0].description : ''
     });
   }
 
@@ -110,9 +117,20 @@ export default class Instructors extends Component {
       dateHired: this.state.dateHired,
       description: this.state.department
     }
-    if(instructor !== {}) {
-      this.props.saveInstructor(instructor);
-    }
+
+    this.props.saveInstructor(instructor);
+
+    this.setState({
+      teacherId: -1,
+      firstName: '',
+      lastName: '',
+      dob: '',
+      email: '',
+      phone: '',
+      positionType: '',
+      dateHired: '',
+      department: '',
+    });
   }
 
   render() {
@@ -129,6 +147,7 @@ export default class Instructors extends Component {
         <div className="col-sm-3">
           <Paper style={{ width: "200px" }}>
           <strong style={{marginLeft: '16%'}}>Instructors</strong>
+          <hr style={{padding: '0px', margin: '0px'}} />
           <List component="ol">
             {this.state.instructors.map((value, key) => (
               <ListItem key={key} button onClick={(e) => this.getTeacher(e, value)}>
@@ -211,7 +230,7 @@ export default class Instructors extends Component {
             />
             <Button
               variant="contained"
-              disabled={this.state.teacherId > -1}
+              disabled={(this.state.teacherId !== -1)}
               style={{
                 backgroundColor: '#3498DB',
                 color: 'white',
@@ -221,7 +240,7 @@ export default class Instructors extends Component {
             >
               Save
             </Button>
-            <Button
+            {/* <Button
               variant="contained"
               style={{
                 backgroundColor: '#9E1030',
@@ -230,7 +249,7 @@ export default class Instructors extends Component {
               }}
             >
               Delete
-            </Button>
+            </Button> */}
           </Paper>
         </div>
         <div className="col-sm-4">

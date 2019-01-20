@@ -13,7 +13,12 @@ export default class DepartmentList extends Component {
                 <List component="ol">
                     {
                         this.props.departments.map((value, key) => 
-                            <ListItem key={key} button onClick={(e) => this.props.getDepartment(e, value)}>
+                            <ListItem 
+                                key={value.description}
+                                value={value.description}
+                                id={value.department_id} 
+                                button onClick={(e) => this.props.getDepartment(e, value)}
+                            >
                                 { value.description }
                             </ListItem>
                             )

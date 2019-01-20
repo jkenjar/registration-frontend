@@ -1,9 +1,12 @@
 import { combineReducers } from "redux";
 
 const instructors = (state = [], action) => {
+  
   switch(action.type) {
     case 'GET_INSTRUCTORS':
-      return [...state, action.payload.data];
+      return action.payload.data;
+    case 'SAVE_INSTRUCTOR':
+      return action.payload.data;
     default:
       return state;
   }
@@ -17,6 +20,8 @@ const departments = (state = [], action) => {
       return state;
   }
 };
+
+
 
 export const reducers = combineReducers({
   instructors,
