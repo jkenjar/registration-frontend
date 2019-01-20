@@ -17,6 +17,9 @@ const mapDispatchToProps = dispatch => {
     },
     saveInstructor: (instructor) => {
       dispatch(actions.saveInstructor(instructor))
+    },
+    editInstructor: (instructor) => {
+      dispatch(actions.editInstructor(instructor))
     }
   };
 };
@@ -84,6 +87,7 @@ class App extends Component {
               instructors={this.props.instructors} 
               departments={this.props.departments} 
               saveInstructor={this.props.saveInstructor}
+              editInstructor={this.props.saveInstructor}
             />
           }
           {
