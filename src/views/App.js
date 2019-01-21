@@ -87,7 +87,7 @@ class App extends Component {
               instructors={this.props.instructors} 
               departments={this.props.departments} 
               saveInstructor={this.props.saveInstructor}
-              editInstructor={this.props.saveInstructor}
+              editInstructor={this.props.editInstructor}
             />
           }
           {

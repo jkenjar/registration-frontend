@@ -13,7 +13,7 @@ export default class Instructors extends Component {
     this.state = {
       instructors: [],
       departments: [],
-      teacherId: -1,
+      teacherId: 0,
       firstName: '',
       lastName: '',
       dob: '',
@@ -26,13 +26,10 @@ export default class Instructors extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.instructors.length !== this.props.instructors.length) {
-      // console.log(nextProps.instructors)
+      console.log(nextProps.instructors)
       this.setState({
         instructors: nextProps.instructors
       });
-    }
-
     this.setState({
       departments: nextProps.departments[0] || []
     });
@@ -88,6 +85,7 @@ export default class Instructors extends Component {
       }
     })
     this.setState({
+      teacherId: teach.instructor_id,
       firstName: teach.first_name,
       lastName: teach.last_name,
       dob: teach.dob,
@@ -105,7 +103,8 @@ export default class Instructors extends Component {
     });
   }
 
-  saveInstructor = (e) => {
+  saveOrEditInstructor = (e) => {
+    console.log(typeof this.state.teacherId)
     let instructor = {
       instructor_id: this.state.teacherId,
       firstName: this.state.firstName,
@@ -118,10 +117,32 @@ export default class Instructors extends Component {
       description: this.state.department
     }
 
-    this.props.saveInstructor(instructor);
+    if(this.state.teacherId === 0) 
+    {
+      console.log('save')
+      this.props.saveInstructor(instructor);
+      this.setState({
+        teacherId: 0,
+        firstName: '',
+        lastName: '',
+        dob: '',
+        email: '',
+        phone: '',
+        positionType: '',
+        dateHired: '',
+        department: '',
+      });
+    } 
+    else 
+    {
+      console.log('edit')
+      this.props.editInstructor(instructor);
+    }
+  }
 
+  clear = () => {
     this.setState({
-      teacherId: -1,
+      teacherId: 0,
       firstName: '',
       lastName: '',
       dob: '',
@@ -230,26 +251,27 @@ export default class Instructors extends Component {
             />
             <Button
               variant="contained"
-              disabled={(this.state.teacherId !== -1)}
+              // disabled={(this.state.teacherId !== 0)}
               style={{
                 backgroundColor: '#3498DB',
                 color: 'white',
                 margin: '10px'
               }}
-              onClick={this.saveInstructor}
+              onClick={this.saveOrEditInstructor}
             >
-              Save
+              {(this.state.teacherId === 0) ? 'Save' : 'Edit'}
             </Button>
-            {/* <Button
+            <Button
               variant="contained"
               style={{
                 backgroundColor: '#9E1030',
                 color: 'white',
                 margin: '10px'
               }}
+              onClick={this.clear}
             >
-              Delete
-            </Button> */}
+              Clear
+            </Button> 
           </Paper>
         </div>
         <div className="col-sm-4">

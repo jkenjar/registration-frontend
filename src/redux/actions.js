@@ -21,8 +21,8 @@ const saveInstructor = (instructor) => {
     type: "SAVE_INSTRUCTOR",
     payload: axios.post(baseURL + "/add_instructor", {
       instructor_id: instructor.instructor_id,
-      firstName: instructor.firstName || '',
-      lastName: instructor.lastName || '',
+      firstName: instructor.firstName || 'First',
+      lastName: instructor.lastName || 'Last',
       dob: instructor.dob || '',
       email: instructor.email || '',
       phone: instructor.phone || '',
@@ -36,7 +36,7 @@ const saveInstructor = (instructor) => {
 const editInstructor = (instructor) => {
   return {
     type: 'EDIT_INSTRUCTOR',
-    payload: axios.put(baseURL + '/edit_instructor', {
+    payload: axios.post(baseURL + '/edit_instructor', {
       instructor_id: instructor.instructor_id,
       firstName: instructor.firstName || '',
       lastName: instructor.lastName || '',
