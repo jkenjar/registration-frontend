@@ -255,7 +255,7 @@ export default class Instructors extends Component {
               style={{
                 backgroundColor: '#3498DB',
                 color: 'white',
-                margin: '10px'
+                margin: '10px 10px 10px 12px' 
               }}
               onClick={this.saveOrEditInstructor}
             >
@@ -264,13 +264,23 @@ export default class Instructors extends Component {
             <Button
               variant="contained"
               style={{
-                backgroundColor: '#9E1030',
+                backgroundColor: '#6c757d',
                 color: 'white',
                 margin: '10px'
               }}
               onClick={this.clear}
             >
               Clear
+            </Button> 
+            <Button
+              variant="contained"
+              style={{
+                backgroundColor: 'red',
+                color: 'white',
+                margin: '10px 10px 10px 140px' 
+              }}
+            >
+              Delete
             </Button> 
           </Paper>
         </div>
