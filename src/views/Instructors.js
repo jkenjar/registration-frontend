@@ -6,8 +6,20 @@ import Paper from "@material-ui/core/Paper";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import DepartmentList from "./DepartmentList";
+import { withStyles } from "@material-ui/styles";
 
-export default class Instructors extends Component {
+const styles = {
+  tabContent: {
+    position: "relative",
+    top: "100px",
+    left: "0px"
+  },
+  root: {
+    padding: '0px'
+  }
+};
+
+class Instructors extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,6 +48,7 @@ export default class Instructors extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props)
     this.setState({
       instructors: this.props.instructors,
       departments: this.props.departments[0] || []
@@ -155,24 +168,23 @@ export default class Instructors extends Component {
   }
 
   render() {
-    const styles = {
-      tabContent: {
-        position: "relative",
-        top: "100px",
-        left: "50px"
-      },
-    };
     return (
       <div style={styles.tabContent} className="container">
       <div className="row">
         <div className="col-sm-3">
-          <Paper style={{ width: "200px" }}>
-          <strong style={{marginLeft: '16%'}}>Instructors</strong>
+          <Paper style={{ width: "150px" }}>
+          <strong style={{marginLeft: '23%'}}>Instructors</strong>
           <hr style={{padding: '0px', margin: '0px'}} />
           <List component="ol">
             {this.state.instructors.map((value, key) => (
-              <ListItem key={key} button onClick={(e) => this.getTeacher(e, value)}>
-                <ListItemText>
+              <ListItem 
+                key={key} 
+                button 
+                onClick={(e) => this.getTeacher(e, value)}
+                className={this.props.classes.root.padding}
+                
+              >
+                <ListItemText >
                   {value.first_name + " " + value.last_name}
                 </ListItemText>
               </ListItem>
@@ -295,3 +307,5 @@ export default class Instructors extends Component {
     );
   }
 }
+
+export default withStyles(styles)(Instructors);
