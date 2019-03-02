@@ -78,13 +78,7 @@ class App extends Component {
               value="students"
               label="Students"
             />
-            <div className="logo" style={{
-              position: 'relative', 
-              left: '67%',
-              fontFamily: 'Cedarville Cursive !important'
-            }}>Enroll.ly</div>
         </Tabs>
-
         </AppBar>
         <div>
           {

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = 'http://localhost:3000';
+const baseURL = 'http://localhost:8080';
 
 const getInstructors = () => {
   return {
@@ -50,9 +50,17 @@ const editInstructor = (instructor) => {
   };
 };
 
+const deleteInstructor = (instructId) => {
+   return {
+    type: 'DELETE_INSTRUCTOR',
+    payload: axios.delete(baseURL + '/delete_instructor' + instructId)
+  };
+}
+
 export const actions = {
   getInstructors,
   getDepartments,
   saveInstructor,
   editInstructor,
+  deleteInstructor
 };
