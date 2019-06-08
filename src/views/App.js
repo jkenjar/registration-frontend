@@ -85,7 +85,7 @@ class App extends Component {
         <NavBar />
         <SideBar />
         <Switch>
-          <Route path="/hire" component={HirePage} exact></Route>
+          <Route path="/" component={HirePage} exact></Route>
           <Route path="/enroll" component={TestPage} />
         </Switch>
       </BrowserRouter>
