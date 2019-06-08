@@ -5,7 +5,7 @@ export default class NavBar extends Component {
         return (
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <a className="navbar-brand" href="/home">Kenjar University</a>
+                    <a className="navbar-brand" href="/hire">Kenjar University</a>
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav">
                         <li className="nav-item">
