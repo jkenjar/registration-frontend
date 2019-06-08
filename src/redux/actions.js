@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = '142.93.57.49:8080';
+const baseURL = '//142.93.57.49:8080';
 
 const getInstructors = () => {
   return {
