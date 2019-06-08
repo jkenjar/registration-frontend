@@ -6,5 +6,27 @@ body {
 .logo {
 	font-family: 'Coiny';
 	font-size: 26px;
-	
 }
+
+.home-panel-1 {
+	width: 200px;
+    background-color: white;
+	margin-top: 10px;        
+	padding-bottom: 500px;
+	border-radius: 0px;
+}
+
+.list-group-item {
+	border-radius: 0px !important;
+}
+
+.list-group-item:hover {
+	background-color: lightslategray;
+	color: white;
+	border-radius: 0px !important;
+}
+
+a {
+	color: inherit !important;
+}
+

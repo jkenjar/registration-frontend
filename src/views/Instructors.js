@@ -13,7 +13,8 @@ const styles = {
   tabContent: {
     position: "relative",
     top: "100px",
-    left: "0px"
+    left: "0px",
+    display: 'inline-flex'
   },
   root: {
     padding: '0px'
@@ -165,9 +166,9 @@ class Instructors extends Component {
 
   render() {
     return (
-      <div style={styles.tabContent} className="container">
+      <div style={styles.tabContent} style={{display: 'inline-flex'}}>
       <div className="row">
-        <div className="col-sm-3">
+        <div className="col-sm-2">
           <InstructorList 
             instructors={this.state.instructors}
             getTeacher={this.getTeacher}
@@ -175,7 +176,7 @@ class Instructors extends Component {
           />
         </div>
         <div
-          className="col-sm-5"
+          className="col-sm-3"
         >
           <Paper style={{width: '420px', paddingBottom: '20px'}}>
             <TextField
@@ -278,7 +279,7 @@ class Instructors extends Component {
             </Button> 
           </Paper>
         </div>
-        <div className="col-sm-4">
+        <div className="col-sm-4" style={{marginLeft: '190px'}}>
           <DepartmentList 
             departments={this.state.departments}
             getDepartment={this.getDepartment}

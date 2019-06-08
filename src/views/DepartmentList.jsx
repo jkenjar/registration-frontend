@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItem";
 import Paper from "@material-ui/core/Paper";
 
 export default class DepartmentList extends Component {
 
     render() {
-        return (<div>
+        return (<div style={{width: '150px'}}>
             <Paper>
                 <strong style={{marginLeft: '4.5%'}}>Departments</strong>
                 <List component="ol">

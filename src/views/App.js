@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import { actions } from "../redux/actions";
-// import { operations } from "../redux/operations";
 import { connect } from "react-redux";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import AppBar from '@material-ui/core/AppBar';
 import Instructors from './Instructors.js';
-
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import NavBar from './NavBar';
+import SideBar from './SideBar';
 const mapDispatchToProps = dispatch => {
   return {
     getInstructors: () => {
@@ -64,40 +62,34 @@ class App extends Component {
         fontFamily: 'Roboto cursive'
       }
     }
+
+    const HirePage = () => {
+      return (
+        <Instructors 
+          instructors={this.props.instructors} 
+          departments={this.props.departments} 
+          saveInstructor={this.props.saveInstructor}
+          editInstructor={this.props.editInstructor}
+        />
+      );
+    }
+
+    const TestPage = () => {
+      return (
+        <h1 style={{display: 'inline-flex'}}>Enroll Page will go here...</h1>
+      );
+    }
+
     return (
-      <div style={styles.pageContent}>
-        <AppBar style={{color: 'white', backgroundColor: '#2196f3'}} position="fixed">
-          <Tabs value={this.state.value} onChange={this.change}>
-            <Tab
-              style={{color: 'white', backgroundColor: '#2196f3', display: 'inline'}}
-              value="instructors"
-              label="Professors"
-            />
-            <Tab
-              style={{color: 'white', backgroundColor: '#2196f3'}}
-              value="students"
-              label="Students"
-            />
-        </Tabs>
-        </AppBar>
-        <div>
-          {
-            this.state.value === 'instructors' &&
-            <Instructors 
-              instructors={this.props.instructors} 
-              departments={this.props.departments} 
-              saveInstructor={this.props.saveInstructor}
-              editInstructor={this.props.editInstructor}
-            />
-          }
-          {
-            this.state.value === 'students' &&
-            <div style={styles.tabContent}>
-            <h1 style={{color: 'white'}}>Student page</h1>
-            </div>
-          }
-        </div>
-      </div>
+      <BrowserRouter>
+        <NavBar />
+        <SideBar />
+        <Switch>
+          <Route path="/home" component={TestPage} exact></Route>
+          <Route path="/hire" component={HirePage} />
+          <Route path="/enroll" component={TestPage} />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }
