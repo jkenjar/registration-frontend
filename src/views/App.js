@@ -85,7 +85,7 @@ class App extends Component {
         <NavBar />
         <SideBar />
         <Switch>
-          <Route path="/" component={TestPage} redirectTo="/hire" exact></Route>
+          <Route path="/home" component={TestPage} exact></Route>
           <Route path="/hire" component={HirePage} />
           <Route path="/enroll" component={TestPage} />
         </Switch>
