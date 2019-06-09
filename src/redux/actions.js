@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = 'http://142.93.57.49:8080';
+const baseURL = 'kenjar.online';
 
 const getInstructors = () => {
   return {
