@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = '//kenjar.online/api';
+const baseURL = 'http://kenjar.online/api';
 
 const getInstructors = () => {
   return {
@@ -9,7 +9,7 @@ const getInstructors = () => {
   };
 };
 
-const getDepartments = () => {
+const getDepartments = () =>{
   return {
     type: 'GET_DEPARTMENTS',
     payload: axios.get(baseURL + '/departments')
