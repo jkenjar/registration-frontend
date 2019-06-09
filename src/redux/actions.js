@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = 'kenjar.online';
+const baseURL = 'kenjar.online/api';
 
 const getInstructors = () => {
   return {
